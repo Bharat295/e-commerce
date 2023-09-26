@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from 'react-router-dom';
+import Cat from './components/CategoryData';
 function App() {
+  const [type, setType] = useState('');
+  console.log(type);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar setType = {setType} />
+      
+      <Router>
+        <Routes>
+         <Route path = '/' element = {<Home type={type}/>} />
+         <Route path = '/category/:category/:id' element = {<Cat/>} />
+        </Routes>
+      </Router>
+     
+       {/* <Router>
+        <Routes>
+
+        </Routes>
+
+      </Router> */}
+
     </div>
   );
 }
