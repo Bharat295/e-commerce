@@ -4,7 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Rating } from '@mui/material';
+import { Button, Rating } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export default function CardData({ data , category }) {
@@ -29,20 +29,28 @@ export default function CardData({ data , category }) {
   }
 
   return (
-   <Link to = {`/category/${category}/${data.id}`}>
+   
     <Card sx={{ maxWidth: 345 }} xs={{
-       height:344  
-    }} key={data.id}
- 
+        height: 400,
+    
+      }} key={data.id}
+        className='card'
+        
     >
       <CardMedia
         component="img"
         alt="green iguana"
-        height="140"
-        image= {data.thumbnail}
+ 
+          image={data.thumbnail}
+          style={{
+            width: '100%',
+            height: '250px',
+            
+            
+          }}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography  variant="h5" component="div">
           {data.title}
         </Typography>
          
@@ -50,10 +58,28 @@ export default function CardData({ data , category }) {
       <CardActions >
         <div >{data.brand}</div>
         <div >{data.category}</div>
-        <Rating value={data.rating}/>
+        </CardActions>
         
-      </CardActions>
+        <div style={{
+          display:'flex',
+        justifyContent: 'space-around',
+          marginTop:'10px'
+      }}>
+          <button className='Cardbtn'>Add to Cart</button>
+        <Link to={`/category/${category}/${data.id}`}>
+          <button className='Cardbtn' >See more</button>
+        </Link>
+      </div>
+       
+      <div style={{
+        float: 'left',
+        margin: '10px 20px',
+        fontSize: '20px',
+        fontWeight:'600'
+
+      }}>price : ₹ {data.price}</div>
+
       </Card>
-      </Link>
+      
   );
 }

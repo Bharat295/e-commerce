@@ -8,8 +8,9 @@ import {
   Routes
 } from 'react-router-dom';
 import Cat from './components/CategoryData';
+import ProductDetails from './components/ProductDetails';
 function App() {
-  const [type, setType] = useState('');
+  const [type, setType] = useState('all');
   console.log(type);
   return (
     <div className="App">
@@ -18,7 +19,8 @@ function App() {
       <Router>
         <Routes>
          <Route path = '/' element = {<Home type={type}/>} />
-         <Route path = '/category/:category/:id' element = {<Cat/>} />
+         <Route path = '/category/:category/:id' element = {<ProductDetails/>} />
+         {/* <Route path = '/category/:category/:id' element = {<Cat/>} /> */}
         </Routes>
       </Router>
      

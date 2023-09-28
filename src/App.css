@@ -82,7 +82,7 @@
           font-family: montserrat;
         }
         nav {
-          background: #5434af;
+          background: #8469db;
           height: 80px;
           width: 100%;
         }
@@ -98,6 +98,8 @@
         nav ul {
           float: right;
           margin-right: 20px;
+          justify-self: center;
+          
         }
         nav ul li {
           display: inline-block;
@@ -108,6 +110,7 @@
           padding: 7px 13px;
           border-radius: 3px;
           text-transform: uppercase;
+          cursor: pointer;
         }
         nav ul li a {
           color: white;
@@ -116,13 +119,7 @@
           border-radius: 3px;
           text-transform: uppercase;
         }
-        li.active, a:hover {
-          background: #1d075f;
-          transition: .5s;
-        }
-        li:hover{
-          cursor: pointer;
-        }
+         
         .checkbtn {
           font-size: 30px;
           color: white;
@@ -157,11 +154,13 @@
             left: -100%;
             text-align: center;
             transition: all .5s;
+            cursor: pointer;
           }
           nav ul li{
             display: block;
             margin: 50px 0;
             line-height: 30px;
+            cursor: pointer;
           }
           nav ul li a {
             font-size: 20px;
@@ -174,3 +173,38 @@
             left: 0;
           }
         }
+
+.card:hover{
+  /* transform: scale(1.1, 1.1); */
+  transform: scale(1.13);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 1);
+}
+
+.card {
+  padding-bottom: 20px;
+  transition: 1s;
+  height: auto;
+  overflow: auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: fit-content;
+}
+
+.Cardbtn{
+   background-color: #8469db;
+   width: 100px;
+   height: 34px;
+   border-radius: 7px;
+   color: white;
+   font-size: 16px;
+   border: 2px solid #8469db;
+}
+
+.Cardbtn:hover{
+   border: 2px solid #8469db;
+   cursor: pointer;
+   background-color: white;
+   color: #8469db;
+   transition: 0.3s;
+}
