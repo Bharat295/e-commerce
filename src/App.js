@@ -7,8 +7,10 @@ import {
   Route,
   Routes
 } from 'react-router-dom';
-import Cat from './components/CategoryData';
 import ProductDetails from './components/ProductDetails';
+import Loader from './components/Loader';
+import CarouselDemo from './components/CarouselDemo';
+
 function App() {
   const [type, setType] = useState('all');
   console.log(type);
@@ -19,17 +21,15 @@ function App() {
       <Router>
         <Routes>
          <Route path = '/' element = {<Home type={type}/>} />
+         <Route path = '/loader' element = {<Loader/>} />
+         <Route path = '/shop' element = {<CarouselDemo/>} />
+        
          <Route path = '/category/:category/:id' element = {<ProductDetails/>} />
          {/* <Route path = '/category/:category/:id' element = {<Cat/>} /> */}
         </Routes>
       </Router>
-     
-       {/* <Router>
-        <Routes>
-
-        </Routes>
-
-      </Router> */}
+      
+       
 
     </div>
   );

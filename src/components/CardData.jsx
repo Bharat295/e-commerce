@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, Rating } from '@mui/material';
 import { Link } from 'react-router-dom';
+import ImageLoader from './ImageLoader';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 
 export default function CardData({ data , category }) {
   const t = {
@@ -28,6 +30,12 @@ export default function CardData({ data , category }) {
     ]
   }
 
+  const [loading, setLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
+
   return (
    
     <Card sx={{ maxWidth: 345 }} xs={{
@@ -37,21 +45,29 @@ export default function CardData({ data , category }) {
         className='card'
         
     >
-      <CardMedia
-        component="img"
-        alt="green iguana"
- 
-          image={data.thumbnail}
-          style={{
-            width: '100%',
-            height: '250px',
-            
-            
-          }}
-      />
+
+      <div style={{
+    width: '100%',
+    height: '250px',
+    overflow: 'hidden',   
+      }}>
+         {loading && <ImageLoader/>}
+          <img
+            src={data.thumbnail}
+            alt=""
+            onLoad={handleImageLoad}  
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+            />
+           
+</div>
       <CardContent>
-        <Typography  variant="h5" component="div">
-          {data.title}
+        <Typography variant="h5" component="div" 
+        >
+        {data.title.length > 20 ? data.title.substring(0,17) + '...' :data.title}
         </Typography>
          
       </CardContent>

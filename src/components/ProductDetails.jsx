@@ -1,10 +1,24 @@
-import { Fragment, useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+
 import { useParams } from "react-router-dom";
 import { getallData } from "../service/api";
 
+import { useEffect, useState } from "react";
+
+import { Grid, Rating } from "@mui/material";
+import { toast } from "react-toastify";
+import Loader from "./Loader";
+
+import CarouselDemo from "./CarouselDemo";
+
 
 const ProductDetails = () => {
+
+    const [quantity, setQuantity] = useState(1);
+   
+    const handelAdd = (quantity) => {
+        // addToCart(selectedProduct,quantity);
+        toast.success("Product has been added to cart!");
+    }  
     
   const { id, category } = useParams();
   const [data, setData] = useState('');
@@ -22,77 +36,65 @@ const ProductDetails = () => {
         getData();
     }, []);
   
-    const t = {
-        "id": 27,
-        "title": "Flying Wooden Bird",
-        "description": "Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm",
-        "price": 51,
-        "discountPercentage": 15.58,
-        "rating": 4.41,
-        "stock": 17,
-        "brand": "Flying Wooden",
-        "category": "home-decoration",
-        "thumbnail": "https://i.dummyjson.com/data/products/27/thumbnail.webp",
-        "images": [
-            "https://i.dummyjson.com/data/products/27/1.jpg",
-            "https://i.dummyjson.com/data/products/27/2.jpg",
-            "https://i.dummyjson.com/data/products/27/3.jpg",
-            "https://i.dummyjson.com/data/products/27/4.jpg",
-            "https://i.dummyjson.com/data/products/27/thumbnail.webp"
-        ]
-      }
-
-
-
    
-    const [quantity, setQuantity] = useState(1);
-    const handleQuantityChange = (event) => {
-        setQuantity(parseInt(event.target.value));
-    };
-     
+ 
     return ( 
-        <Fragment>
-            
-           
-            <section className="product-page">
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col md={6}>
-                            <img loading="lazy" src=
-                                {data.thumbnail} alt="" 
-                                style={{
-                                    height: '400px',
-                                    width:"300px"
-                                }}
+        <>
+            {
+                data ? 
+                <Grid container className="product-page">
+                    <Grid item xs={6}>
+                        <div className="displayImage">
+                                <CarouselDemo images={data.images} />
+                            
+                        </div>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                    
+                            height: '100%',
+                            width: '100%',
+                  
+                        }}>
 
-                                />
-                        </Col>
-                        <Col md={6}>
-                            <h2>  {data.title} </h2>
+                            <h2
+                                style={{
+                                    fontSize: '30px',
+                                    fontFamily: 'system-ui - 500',
+                                    marginLeft: '30px',
+                                    marginTop: '80px'
+                                }}
+                            >{data.title}</h2>
                             <div className="rate">
-                                <div className="stars">
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                </div>
-                                {/* <span>ratings</span> */}
+                                <Rating name="read-only" value={data.rating} readOnly />
+                                <span>{data.rating} ratings</span>
                             </div>
                             <div className="info">
-                                <span className="price"> Price: {data.price} </span>
-                                <span>category: {data.category} </span>
+                                <span className="price">${data.price}</span>
+                                <span style={{ fontWeight: '600', fontSize: '20px' }}>Category:</span>{data.category}
                             </div>
-                            <p> kkd </p>
-                            <input className="qty-input" type="number" placeholder="Qty" value= {1} onChange={handleQuantityChange} />
-                            <button aria-label="Add" type="submit" className="add"  >Add To Cart</button>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-             
-            
-        </Fragment>
+                            <div className="description">
+                                {data.description}
+
+                            </div>
+                      
+                                <input className="qty-input" type="number" placeholder="Qty" value={quantity} />
+                                <div>
+
+                                    <button aria-label="Add" type="submit" className="Cardbtn add" onClick={() => handelAdd(quantity)}>Add To Cart</button>
+                                    <button aria-label="Add" type="submit" className="Cardbtn add">Try on</button>
+                                </div>     
+                        </div>
+               
+                    </Grid>
+                </Grid> :
+                   <Loader/>
+            }
+
+    </>
+
     );
 }
 
