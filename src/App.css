@@ -95,8 +95,6 @@
     height: 600px;
     width: 100%;
 }
-
- 
  
     .head{
             height: 60px;
@@ -122,13 +120,10 @@
             
         }
         .navli:hover{
-            transform: scale(1.2);
+            transform: scale(0);
             font-weight: bold;
         }
-       
-        
-         
-
+ 
         * {
           padding: 0;
           margin: 0;
@@ -238,21 +233,21 @@
         }
 
 .card:hover{
-  /* transform: scale(1.1, 1.1); */
-  transform: scale(1.13);
+  transform: scale(1.07);
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 1);
 }
 
 .card {
+  border-radius: 20px;
   padding-bottom: 20px;
   transition: 1s;
   height: auto;
   overflow: auto;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-height: fit-content;
-  /* background-color: red; */
+  background-color: #d3c5fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
 .Cardbtn{
@@ -288,4 +283,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Web cam */
+
+  
+.webcam-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #D9D2F0;
+  padding: 20px;
+  text-align: center;
+}
+
+.webcam {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
 }

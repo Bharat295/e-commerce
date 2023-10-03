@@ -17,15 +17,13 @@ function App() {
   return (
     <div className="App">
       <Navbar setType = {setType} />
-      
+       
       <Router>
         <Routes>
-         <Route path = '/' element = {<Home type={type}/>} />
-         <Route path = '/loader' element = {<Loader/>} />
-         <Route path = '/shop' element = {<CarouselDemo/>} />
-        
+         <Route exact path = '/' element = {<Home type={type}/>} />
+         {/* <Route path = '/loader' element = {<Loader/>} /> */}
          <Route path = '/category/:category/:id' element = {<ProductDetails/>} />
-         {/* <Route path = '/category/:category/:id' element = {<Cat/>} /> */}
+         <Route path = '/category/:category' element = {<Home/>} />
         </Routes>
       </Router>
       

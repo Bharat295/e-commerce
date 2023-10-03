@@ -6,9 +6,10 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import ImageLoader from './ImageLoader';
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
+ 
 export default function CardData({ data , category }) {
   const t = {
     "id": 27,
@@ -35,10 +36,13 @@ export default function CardData({ data , category }) {
   const handleImageLoad = () => {
     setLoading(false);
   };
+  
+  const notify = () => toast.success("Item Added");
+   
 
   return (
    
-    <Card sx={{ maxWidth: 345 }} xs={{
+    <div sx={{ maxWidth: 345 }} xs={{
         height: 400,
     
       }} key={data.id}
@@ -49,7 +53,8 @@ export default function CardData({ data , category }) {
       <div style={{
     width: '100%',
     height: '250px',
-    overflow: 'hidden',   
+        overflow: 'hidden',
+     
       }}>
          {loading && <ImageLoader/>}
           <img
@@ -67,7 +72,7 @@ export default function CardData({ data , category }) {
       <CardContent>
         <Typography variant="h5" component="div" 
         >
-        {data.title.length > 20 ? data.title.substring(0,17) + '...' :data.title}
+        {data.title.length > 20 ? data.title.substring(0,18) + '...' :data.title}
         </Typography>
          
       </CardContent>
@@ -81,11 +86,13 @@ export default function CardData({ data , category }) {
         justifyContent: 'space-around',
           marginTop:'10px'
       }}>
-          <button className='Cardbtn'>Add to Cart</button>
+          <button className='Cardbtn' onClick={notify}>Add to Cart</button>
         <Link to={`/category/${category}/${data.id}`}>
           <button className='Cardbtn' >See more</button>
         </Link>
+         
       </div>
+
        
       <div style={{
         float: 'left',
@@ -95,7 +102,7 @@ export default function CardData({ data , category }) {
 
       }}>price : ₹ {data.price}</div>
 
-      </Card>
+      </div>
       
   );
 }

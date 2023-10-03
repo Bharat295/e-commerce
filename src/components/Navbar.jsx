@@ -1,14 +1,13 @@
 import React from 'react'
-
+ 
 export default function Navbar({setType}) {
-    return (
-       
-            
-       <nav>
 	 
+	return (
+    
+       <nav>
 		<label class="logo">My Store</label>
-		<ul>
-			 <li onClick={()=> setType('all')} >All</li>
+			<ul>		
+			 <li onClick={()=> setType('all')} >  All   </li>
 			 <li onClick={()=> setType('smartphones')}>Smartphone</li>
 			 <li onClick={()=> setType('laptops')}>Laptops</li>
 			 <li onClick={()=> setType('skincare')}>Skincare</li>

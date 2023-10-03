@@ -9,7 +9,7 @@ export default function CarouselDemo({ images }) {
         <div style={{
             justifyContent: 'center',
             alignItems: 'center',
-            display:'flex'
+            display: 'flex',
         }}>
             
                 <Carousel
@@ -18,11 +18,11 @@ export default function CarouselDemo({ images }) {
                     showArrows={true}
                     showStatus={true}
                     stopOnHover={true}
-                    interval={2000}
+                    interval={1500}
                     width={500}
-                    dynamicHeight = {true}
-            
-                verticalSwipe = 'natural'
+                    dynamicHeight = {false}
+                    
+                    verticalSwipe = 'natural'
                 >
                     {
                         images.map((val) => {
@@ -31,13 +31,9 @@ export default function CarouselDemo({ images }) {
                             </div>
                         })
                     }
-
-
-
+ 
                 </Carousel>
-
-            
-
+ 
         </div>
     )
 }

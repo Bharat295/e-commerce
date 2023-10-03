@@ -5,19 +5,26 @@ import { getallData } from "../service/api";
 import { useEffect, useState } from "react";
 
 import { Grid, Rating } from "@mui/material";
-import { toast } from "react-toastify";
 import Loader from "./Loader";
-
 import CarouselDemo from "./CarouselDemo";
 
+// Import toastify css file
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import WebcamPopup from "./WebcamPopup";
+
+ 
 
 const ProductDetails = () => {
 
     const [quantity, setQuantity] = useState(1);
    
-    const handelAdd = (quantity) => {
+    const handelAdd = () => {
+        console.log('click');
+        // let cnt = quantity;
         // addToCart(selectedProduct,quantity);
-        toast.success("Product has been added to cart!");
+        setQuantity(quantity + 1);
+        // toast.success("Product has been added to cart!");
     }  
     
   const { id, category } = useParams();
@@ -26,20 +33,30 @@ const ProductDetails = () => {
         const response = await getallData(category);
         const currData = response.data.products;
         // setData(response.data.products);
-      const d = currData.filter((val) => {
+        const d = currData.filter((val) => {
         return val.id == id
-      });
+        });
         setData(d[0]); 
-        console.log(data);  
+        // console.log(data);  
     }
     useEffect(() => {
         getData();
     }, []);
   
-   
- 
+    const notify = () => toast.success("Item Added");
+    const [showWebcamPopup, setShowWebcamPopup] = useState(false);
+
+    const openWebcamPopup = () => {
+      setShowWebcamPopup(true);
+    };
+  
+    const closeWebcamPopup = () => {
+      setShowWebcamPopup(false);
+    };
+    
     return ( 
         <>
+        <ToastContainer />
             {
                 data ? 
                 <Grid container className="product-page">
@@ -77,14 +94,15 @@ const ProductDetails = () => {
                             </div>
                             <div className="description">
                                 {data.description}
-
-                            </div>
-                      
-                                <input className="qty-input" type="number" placeholder="Qty" value={quantity} />
+                            </div>                    
+                                <input className="qty-input" type="number" placeholder="1"  />
                                 <div>
-
-                                    <button aria-label="Add" type="submit" className="Cardbtn add" onClick={() => handelAdd(quantity)}>Add To Cart</button>
-                                    <button aria-label="Add" type="submit" className="Cardbtn add">Try on</button>
+                                    <button aria-label="Add" type="submit" className="Cardbtn add" onClick={notify}>Add To Cart</button>
+                                    <button aria-label="Add" type="submit"
+                                        className="Cardbtn add" onClick={()=> toast.error("Feature is in Progress")}>Buy Now</button>
+                                    <button aria-label="Add" type="submit"
+                                        className="Cardbtn add" onClick={openWebcamPopup} >Try on</button>
+                                    {showWebcamPopup && <WebcamPopup handleClose={closeWebcamPopup} />}
                                 </div>     
                         </div>
                
