@@ -3,18 +3,23 @@ import React, { useRef } from 'react';
 import Webcam from 'react-webcam';
 
 const WebcamPopup = ({ handleClose }) => {
-    const webcamRef = useRef(null);
+   const webcamRef = useRef(null);
    
   return (
       <div className="webcam-popup">
               <div className="popup-content" >
-                  <Webcam
+                  {/* <Webcam
                       ref={webcamRef}
                       screenshotFormat="image/jpeg"
                       className="webcam"
                       mirrored='false'
-                  />
-                  <button className='Cardbtn add' onClick={handleClose}>Close</button>
+                  /> */}
+              Web cam will appear here!
+              <button
+                  className='Cardbtn add'
+                  onClick={handleClose}
+                  style={{marginTop:'20px'}}
+              >Close</button>
               </div> 
           
       
