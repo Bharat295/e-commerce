@@ -100,9 +100,9 @@ const ProductDetails = () => {
                                     <button aria-label="Add" type="submit" className="Cardbtn add" onClick={notify}>Add To Cart</button>
                                     <button aria-label="Add" type="submit"
                                         className="Cardbtn add" onClick={()=> toast.error("Feature is in Progress")}>Buy Now</button>
-                                    <button aria-label="Add" type="submit"
+                                    {/* <button aria-label="Add" type="submit"
                                         className="Cardbtn add" onClick={openWebcamPopup} >Try on</button>
-                                    {showWebcamPopup && <WebcamPopup handleClose={closeWebcamPopup} />}
+                                    {showWebcamPopup && <WebcamPopup handleClose={closeWebcamPopup} />} */}
                                 </div>     
                         </div>
                

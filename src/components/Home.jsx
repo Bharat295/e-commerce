@@ -33,7 +33,7 @@ export default function Home({ type }) {
                      <ToastContainer/>
                     {
                         data && data.map((item) => {
-                            return <Grid item xs={3}  key={item.id}  >
+                            return <Grid item xs={12} sm={6} md={4} lg={3}  key={item.id}  >
                 
                        
                                 <CardData data={item}
