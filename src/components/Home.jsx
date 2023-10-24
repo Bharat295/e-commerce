@@ -15,9 +15,8 @@ export default function Home({ type }) {
     const getData = async () => {
         const response = await getallData(category);
         setData(response.data.products);
-        // console.log(data);
     }
-
+    
     useEffect(() => {
         setData();
         getData();
